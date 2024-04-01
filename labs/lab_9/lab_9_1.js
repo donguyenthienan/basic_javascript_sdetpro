@@ -5,9 +5,9 @@ const SLUG = '/posts';
 let url = `${BASE_URL}${SLUG}`;
 
 let userID = readline.question("Please input user id: ");
-userID=Number(userID);
+userID = Number(userID);
 let postID = readline.question("Please input post id: ");
-postID=Number(postID);
+postID = Number(postID);
 // -> still pending, need then or async/ await to return result
 // const filterPosts = sendRequest(url).then(function(posts){
 //     posts.filter(function(posts){
@@ -39,9 +39,9 @@ function printTargetPost(userID, postID) {
 function printAllPost(userID) {
     _getAllPost(userID).then(function (filterPosts) {
         if (filterPosts.length !== 0) {
-            for(const post of filterPosts){
+            for (const post of filterPosts) {
                 console.log(post.body);
-            }  
+            }
         }
         else {
             console.log(`Please recheck user ID: ${userID}`);
@@ -58,6 +58,7 @@ function _getAllPost(userID) {
 }
 
 function sendRequest(url) {
+    //fetch return Promise so we use then() to get data to handle asynchronous
     return fetch(url).then(function (response) {
         return response.json();
     })
